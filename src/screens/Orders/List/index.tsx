@@ -5,26 +5,28 @@ import { observer } from "mobx-react-lite";
 import OrdersListState from "./store";
 import { OrdersListItem } from "./types";
 
-import Button from "../../../components/Button";
-import AngleLeftIcon from "../../../assets/icons/angle-left-solid.svg";
+import Button from "~/components/Button";
+import AngleLeftIcon from "~/assets/icons/angle-left-solid.svg";
 import AngleRightIcon from "~/assets/icons/angle-right-solid.svg";
 import ListItem from "./components/ListItem";
+import Skeleton from "~/components/Skeleton";
+import { Preloader } from "~/components/Preloader";
 
 const OrdersList = observer(
   (): JSX.Element => {
     const [state] = React.useState(new OrdersListState());
 
     useEffect(() => {
-      if (state.initialized) return;
+      if (state.initialized || state.loading) return;
       state.initialize();
     });
-
+    
     return (
       <React.Fragment>
         <div className={styles.screenWrapper}>
           <div className={styles.screen}>
-            {state.loading && <span>Loading...</span>}
-            {!state.loading && (
+            {state.loading && !state.initialized && <Preloader className={styles.preloader}/>}
+            {state.initialized && (
               <div className={styles.table}>
                 <div className={styles.head}>
                   <div className={styles.row}>
@@ -36,13 +38,16 @@ const OrdersList = observer(
                   </div>
                 </div>
                 <div className={styles.body}>
-                  {map(state.orders, (order: OrdersListItem, index: number) => (
-                    <ListItem order={order} key={index} />
-                  ))}
-                </div>
+                  {!state.loading && 
+                    map(state.orders, (order: OrdersListItem, index: number) => (
+                      <ListItem order={order} key={index} />
+                    ))}
+                  {state.loading && <Skeletons />}
+                </div>        
               </div>
+              
             )}
-            <div className={styles.pagination}>
+            {state.initialized && <div className={styles.pagination}>
               <Button
                 small
                 text="PREV"
@@ -59,12 +64,16 @@ const OrdersList = observer(
                 disabled={!state.canNext}
                 onClick={() => state.nextPage()}
               />
-            </div>
+            </div>}
           </div>
         </div>
       </React.Fragment>
     );
   }
 );
+
+const Skeletons = () => <>{[1, 2, 3, 4].map((_, i) => 
+  <div key={i} className={styles.skeleton}><Skeleton /></div>
+)}</>
 
 export default OrdersList;

@@ -1,7 +1,14 @@
 @import '../../../../../common.styl'
 
 .row
+  display grid
+  grid-template-columns: 2fr 5fr 5fr 4fr 4fr
+  column-gap: 5px
   min-height 64px
+  stretch('min-height', 42, 64)
+
+  &:nth-of-type(2n)
+    background-color #00000003
 
   div
     display flex
@@ -12,6 +19,8 @@
 
     &:last-child div
       width 100%
+
+
 
 .orderNumber
   font-weight 500

@@ -1,7 +1,7 @@
 import { makeAutoObservable } from "mobx";
 import { OrdersListItem } from "./types";
 import { createBrowserHistory, History } from "history";
-import client from "api/gql";
+import client from "~/api/gql";
 import { GET_ORDERS_QUERY } from "~/screens/Orders/List/queries";
 
 export default class OrdersListState {
@@ -68,14 +68,22 @@ export default class OrdersListState {
     return this.page > 1;
   }
 
-  async loadOrders() {
-    this.loading = true;
-    this.loading = false;
+  *loadOrders(page?: number) {
+    this.startLoading();
+
+    const { data: { getOrders } } = yield client.query(GET_ORDERS_QUERY, { page: page || this.page }).toPromise();
+    if (getOrders) {
+      this.setOrders(getOrders.orders);
+      this.setPage(getOrders.pagination.currentPage);
+      this.setTotalPages(getOrders.pagination.totalPageCount); 
+    }
+    this.setInitialized(true);
+    this.stopLoading();
   }
 
   initialize() {
     if (this.initialized) return;
-    this.initialized = true;
-    this.loadOrders();
+    const page = Number(new URL(window.location.href).searchParams.get("page"));
+    this.loadOrders(page);
   }
 }

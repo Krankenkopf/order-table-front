@@ -3,9 +3,11 @@ declare namespace StylesMStylNamespace {
     body: string;
     head: string;
     pagination: string;
+    preloader: string;
     row: string;
     screen: string;
     screenWrapper: string;
+    skeleton: string;
     table: string;
   }
 }
