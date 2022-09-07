@@ -4,9 +4,8 @@ import { SingleOrderItem } from "~/screens/Orders/Show/types";
 // import styles from "./styles.m.styl";
 
 const Item = observer(
-  ({ item }: { item: SingleOrderItem }): JSX.Element => {
-    return <div>{item.offer.displayName}</div>;
-  }
+  ({ item }: { item: SingleOrderItem }): JSX.Element =>
+    <div>{item.offer.displayName}</div>
 );
 
 export default Item;

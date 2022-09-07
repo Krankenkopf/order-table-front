@@ -1,6 +1,12 @@
 declare namespace StylesMStylNamespace {
   export interface IStylesMStyl {
+    delivery: string;
+    emptyTable: string;
     items: string;
+    nav: string;
+    order: string;
+    orderList: string;
+    preloader: string;
     screen: string;
     screenWrapper: string;
   }
