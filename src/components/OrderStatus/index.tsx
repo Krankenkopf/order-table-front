@@ -1,4 +1,4 @@
-import Tag from "components/Tag";
+import Tag from "~/components/Tag";
 import React from "react";
 import { useGlobalState } from "~/screens/globalState";
 import { find } from "lodash";
@@ -20,6 +20,7 @@ const OrderStatus = observer(
         color = "blue";
         break;
       case "complete":
+      case "already-buyed":
         color = "green";
         break;
       default:

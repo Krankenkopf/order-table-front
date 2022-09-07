@@ -1,11 +1,12 @@
 {
   "compilerOptions": {
-    "baseUrl": ".",
+    "baseUrl": "./",
     "paths": {
-      "~/*": ["./*"],
-      "components/*": ["./components/*"],
-      "~/components/*": ["./components/*"],
-      "~/assets/*": ["./assets/*"]
+      "~/*": ["src/*"],
+      "~/api/*": ["src/api/*"],
+      "~/components/*": ["src/components/*"],
+      "~/screens/*": ["src/screens/*"],
+      "~/assets/*": ["src/assets/*"]
     }
   }
 }

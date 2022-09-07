@@ -1,4 +1,4 @@
-import Tag from "components/Tag";
+import Tag from "~/components/Tag";
 import React from "react";
 import { useGlobalState } from "~/screens/globalState";
 import { find } from "lodash";

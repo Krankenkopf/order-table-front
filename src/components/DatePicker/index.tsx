@@ -4,12 +4,12 @@ import { observer } from "mobx-react-lite";
 import {
   format,
   default as DatePickerState,
-} from "components/DatePicker/store";
+} from "~/components/DatePicker/store";
 import moment from "moment";
 import styles from "./styles.m.styl";
 import classNames from "classnames";
-import AngleLeftIcon from "assets/icons/angle-left-solid.svg";
-import AngleRightIcon from "assets/icons/angle-right-solid.svg";
+import AngleLeftIcon from "~/assets/icons/angle-left-solid.svg";
+import AngleRightIcon from "~/assets/icons/angle-right-solid.svg";
 
 interface Props {
   date?: string;

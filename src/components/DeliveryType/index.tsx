@@ -1,4 +1,4 @@
-import Tag from "components/Tag";
+import Tag from "~/components/Tag";
 import React from "react";
 import { observer } from "mobx-react-lite";
 import { useGlobalState } from "~/screens/globalState";

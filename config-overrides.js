@@ -30,11 +30,6 @@ module.exports = function ovr(config, env) {
     config = setupStylus(config, env)
     config = setupTsCssModules(config, env)
 
-    config.resolve.alias = {
-        ...config.resolve.alias,
-        '~/assets': path.resolve(__dirname, 'src/assets')
-    }
-
     config = override(addWebpackAlias({
         '~': path.resolve(__dirname, 'src')
     }))(config,env)
@@ -44,7 +39,7 @@ module.exports = function ovr(config, env) {
         loader: 'svg-react-loader'
     })
 
-    console.log(JSON.stringify(config.module.rules, null, '  '))
+    // console.log(JSON.stringify(config.module.rules, null, '  '))
 
     return config;
 }
