@@ -11,9 +11,13 @@ $purple = #9698D6
 $background = #F6F6F6
 $background-light = #F5F5FA
 
+minWidth = 320px
+maxWidth = 1920
+$bp3 = 767.98px
+
 coolScrollbar()
   &::-webkit-scrollbar
-    width 6px
+    width 10px
 
   &::-webkit-scrollbar-track
     background alpha($background-light, 70%)
@@ -22,3 +26,20 @@ coolScrollbar()
     background-color alpha($primary-grey, 80%)
     border-radius 20px
     border 3px solid transparent
+
+stretch(prop, min, max) 
+ 	delta = max - min
+ 	deltaMob = delta + (delta * 0.7)
+  desktop = "(min-width: %s)" % $bp3
+  mobile = "(max-width: %s)" % $bp3
+
+  &
+    @media desktop
+	    {prop} "calc((%spx + %s * (100vw / %s)))" % (min delta maxWidth)
+
+  &    
+    @media mobile
+      //
+		  {prop} "calc(%spx + %s * ((100vw - %s) / %s))" % (min deltaMob minWidth maxWidth) !important  
+ 	  
+	
