@@ -1,7 +1,7 @@
 declare namespace StylesMStylNamespace {
   export interface IStylesMStyl {
     preloader: string;
-    spin__slip: string;
+    "spin-slip": string;
   }
 }
 
